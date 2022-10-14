@@ -12,7 +12,9 @@ class MoviesController {
   }
   public list = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const movies = await service.listAll(repo.getAll)
+      const year = req.query.year?.toString()
+      const name = req.query.name?.toString()
+      const movies = await service.list(repo.getAll, year, name)
       res.status(200).send(movies)
     } catch (error) {
       next(error)
