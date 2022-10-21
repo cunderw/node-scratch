@@ -1,16 +1,15 @@
-import fs from 'fs-extra'
-import { logger } from '../utils/logger'
+import fs from 'fs-extra';
 
 export const getDirectories = async (path: string) => {
-  const filesAndDirectories = await fs.readdir(path)
-  const directories = []
+  const filesAndDirectories = await fs.readdir(path);
+  const directories = [];
 
   await Promise.all(
     filesAndDirectories.map(async name => {
-      const stat = await fs.stat(path + name)
-      if (stat.isDirectory()) directories.push(name)
+      const stat = await fs.stat(path + name);
+      if (stat.isDirectory()) directories.push(name);
     }),
-  )
+  );
 
-  return directories
-}
+  return directories;
+};
